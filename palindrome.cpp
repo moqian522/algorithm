@@ -25,6 +25,20 @@ bool isPalindromebyRecurrence(string str) {
 
     return false;
 
+}
+
+bool isPalindromeCharbyRecurrence(const char* str, int strLen) {
+
+    if (strLen <= 1) {
+        return true;
+    }
+
+
+    if (str[0] == str[strLen - 1]) {
+        return isPalindromeCharbyRecurrence(str + 1, strLen - 2);
+    }
+
+    return false;
 
 }
 
@@ -57,13 +71,34 @@ bool isPalindromebyStep(string str) {
 
 }
 
+bool isPalindromeCharbyStep(const char* str, int strLen) {
+
+    bool isPalindrome = true;
+
+    if (strLen <= 1) {
+        return true;
+    }
+
+
+    for (int i = 0; i < strLen/2; i++) {
+        if (str[i] != str[strLen - i - 1]){
+            isPalindrome = false;
+            break;
+        }
+    }
+
+    return isPalindrome;
+
+
+}
+
 int main()
 {
     string isPalindrome = " is a palindrome";
     string notPalindrome = " is not a palindrome";
 
-    string str = "";
-    if (isPalindromebyRecurrence(str)) {
+    const char* str = "";
+    if (isPalindromeCharbyRecurrence(str, 0)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -71,7 +106,7 @@ int main()
     }
 
     str = "a";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyRecurrence(str, 1)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -79,7 +114,7 @@ int main()
     }
 
     str = "ab";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyRecurrence(str, 2)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -87,7 +122,7 @@ int main()
     }
 
     str = "aba";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyRecurrence(str, 3)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -95,7 +130,7 @@ int main()
     }
 
     str = "abba";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyRecurrence(str, 4)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -103,7 +138,7 @@ int main()
     }
 
     str = "cccbccc";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyRecurrence(str, 7)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -111,7 +146,7 @@ int main()
     }
 
     str = "aaaaa";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyRecurrence(str, 5)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -120,7 +155,7 @@ int main()
 
     cout << "========================================" << endl;
     str = "";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyStep(str, 0)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -128,7 +163,7 @@ int main()
     }
 
     str = "a";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyStep(str, 1)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -136,7 +171,7 @@ int main()
     }
 
     str = "ab";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyStep(str, 2)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -152,7 +187,7 @@ int main()
     }
 
     str = "abba";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyStep(str, 4)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -160,7 +195,7 @@ int main()
     }
 
     str = "cccbccc";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyStep(str, 7)) {
         cout << str << isPalindrome << endl;
     }
     else {
@@ -168,7 +203,7 @@ int main()
     }
 
     str = "aaaaa";
-    if (isPalindromebyRecurrence(str)) {
+    if (isPalindromeCharbyStep(str, 5)) {
         cout << str << isPalindrome << endl;
     }
     else {
