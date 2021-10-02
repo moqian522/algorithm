@@ -7,17 +7,9 @@ bool isPalindromebyRecurrence(string str) {
 
     int strLen = str.length();
 
-    // if (strLen < 1){
-    //     return false;
-    // }
-
     if (strLen <= 1) {
         return true;
     }
-
-    // if (strLen == 2) {
-    //     return str[0] == str[1];
-    // }
 
     if (str[0] == str[strLen - 1]) {
         return isPalindromebyRecurrence(str.substr(1, strLen - 2));
@@ -47,17 +39,9 @@ bool isPalindromebyStep(string str) {
     int strLen = str.length();
     bool isPalindrome = true;
 
-    // if (strLen < 1){
-    //     return false;
-    // }
-
     if (strLen <= 1) {
         return true;
     }
-
-    // if (strLen == 2) {
-    //     return str[0] == str[1];
-    // }
 
     for (int i = 0; i < strLen/2; i++) {
         if (str[i] != str[strLen - i - 1]){

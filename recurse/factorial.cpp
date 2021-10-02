@@ -21,5 +21,8 @@ int factorial(int n) {
 }
 int main()
 {
-    cout << "Hello World" << endl;
+    int n;
+    cin >> n;
+    cout << "Loop "<< n << "!:" << factorial(n) << endl;
+    cout << "Recurse " << n << "!:" << factorial(n) << endl;
 }
