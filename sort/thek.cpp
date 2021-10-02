@@ -13,7 +13,7 @@ int partition(int array[], size_t arrStart, size_t pivot, size_t arrEnd) {
    }
    int pivotValue = array[pivot];
    array[pivot] = array[arrEnd - 1];
-   int pivotPos = 0;
+   int pivotPos = arrStart;
    int temp;
 
    for (int i = arrStart; i < arrEnd - 1; ++i)
