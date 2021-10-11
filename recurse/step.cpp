@@ -53,6 +53,7 @@ int main()
     cout << "2 stairs:  " << calStepMethods(2) << endl;
     cout << "3 stairs:  " << calStepMethods(3) << endl;
     cout << "4 stairs:  " << calStepMethods(4) << endl;
+    cout << "5 stairs:  " << calStepMethods(5) << endl;
     cout << "10 stairs: " << calStepMethods(10) << endl;
 
     cout << "calStepMethodsbyStepping" << endl;
@@ -61,5 +62,6 @@ int main()
     cout << "2 stairs:  " << calStepMethodsbyStepping(2) << endl;
     cout << "3 stairs:  " << calStepMethodsbyStepping(3) << endl;
     cout << "4 stairs:  " << calStepMethodsbyStepping(4) << endl;
+    cout << "5 stairs:  " << calStepMethodsbyStepping(5) << endl;
     cout << "10 stairs: " << calStepMethodsbyStepping(10) << endl;
 }

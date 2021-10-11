@@ -1,50 +1,43 @@
 #include <iostream>
 #include <math.h>
+#include <cstdlib>
 
 using namespace std;
 
-bool merge(int array[], size_t arrStart, size_t arrMiddle, size_t arrEnd) {
-    int arrLen = arrEnd - arrStart;
-    if (arrLen < 2) {
-        cout << "Please check your implementation." << endl;
-        return false;
-    }
+int partition(int array[], size_t arrStart, size_t pivot, size_t arrEnd) {
+   int arrayLen = arrEnd - arrStart;
 
-    int *temp = new int(arrLen);
-    int i = arrStart;
-    int j = arrMiddle;
-    int tempIndex = 0;
+   if ( arrayLen < 1 || pivot < arrStart || pivot >= arrEnd) {
+       cout << "Please check your implementation." << endl;
+       return -1;
+   }
+   int pivotValue = array[pivot];
+   array[pivot] = array[arrStart];
+   array[arrStart] = pivotValue;
+   int pivotPos = arrStart;
+   int right = arrEnd - 1;
+   int temp;
 
-    while (i < arrMiddle && j < arrEnd) {
-        if (array[i] > array[j]) {
-            temp[tempIndex] = array[j];
-            ++j;
-        }
-        else {
-            temp[tempIndex] = array[i];
-            ++i;
-        }
-        ++tempIndex;
-    }
+  while(pivotPos < right) {
+      while (array[right] >= pivotValue && pivotPos < right) {
+          --right;
+      }
+      while (array[pivotPos] <= pivotValue && pivotPos < right) {
+          ++pivotPos;
+      }
+      if(pivotPos < right) {
+          temp = array[pivotPos];
+          array[pivotPos] = array[right];
+          array[right] = temp;
+      }
 
-    while (i < arrMiddle) {
-        temp[tempIndex++] = array[i++];
-    }
+  }
+   array[arrStart] = array[pivotPos];
+   array[pivotPos] = pivotValue;
 
-    while (j < arrEnd) {
-        temp[tempIndex++] = array[j++];
-    }
-
-    for ((tempIndex = 0, i = arrStart); (tempIndex < arrLen && i < arrEnd); (++tempIndex, ++i)) {
-        array[i] = temp[tempIndex];
-    }
-
-    delete []temp;
-    temp = NULL;
-
-    return true;
+   return pivotPos;
 }
-bool mergeSort(int array[], size_t arrStart, size_t arrEnd) {
+bool quickSort(int array[], size_t arrStart, size_t arrEnd) {
     int arrLen = arrEnd - arrStart;
     if (arrLen < 0) {
         cout << "Please check your input." << endl;
@@ -55,11 +48,16 @@ bool mergeSort(int array[], size_t arrStart, size_t arrEnd) {
         return true;
     } 
 
-    int middle = arrStart + floor(arrLen / 2);
+    srand(array[array[arrStart] + arrLen + array[arrEnd - 1]]);
 
-    mergeSort(array, arrStart, middle);
-    mergeSort(array, middle, arrEnd);
-    return merge(array, arrStart, middle, arrEnd);
+    int pivot = arrStart + floor(((arrLen - 1) + (size_t)rand()) % (arrLen - 1));
+
+    int pivotPos = partition(array, arrStart, pivot, arrEnd);
+
+    quickSort(array, arrStart, pivotPos);
+    quickSort(array, pivotPos+1, arrEnd);
+
+    return true;
 }
 
 void printArray(int array[], int arrLen) {
@@ -74,7 +72,7 @@ int main(){
     int arrayLen = sizeof(array0)/sizeof(int);
 
     printArray(array0, arrayLen);
-    mergeSort(array0, 0, arrayLen);
+    quickSort(array0, 0, arrayLen);
     printArray(array0, arrayLen);
 
     cout << "=========================================" << endl;
@@ -83,7 +81,7 @@ int main(){
     arrayLen = sizeof(array1)/sizeof(int);
 
     printArray(array1, arrayLen);
-    mergeSort(array1, 0, arrayLen);
+    quickSort(array1, 0, arrayLen);
     printArray(array1, arrayLen);
 
     cout << "=========================================" << endl;
@@ -92,7 +90,7 @@ int main(){
     arrayLen = sizeof(array2)/sizeof(int);
 
     printArray(array2, arrayLen);
-    mergeSort(array2, 0, arrayLen);
+    quickSort(array2, 0, arrayLen);
     printArray(array2, arrayLen);
 
     cout << "=========================================" << endl;
@@ -101,7 +99,7 @@ int main(){
     arrayLen = sizeof(array3)/sizeof(int);
 
     printArray(array3, arrayLen);
-    mergeSort(array3, 0, arrayLen);
+    quickSort(array3, 0, arrayLen);
     printArray(array3, arrayLen);
 
 
@@ -111,7 +109,7 @@ int main(){
     arrayLen = sizeof(array4)/sizeof(int);
 
     printArray(array4, arrayLen);
-    mergeSort(array4, 0, arrayLen);
+    quickSort(array4, 0, arrayLen);
     printArray(array4, arrayLen);
 
     cout << "=========================================" << endl;
@@ -120,7 +118,7 @@ int main(){
     arrayLen = sizeof(array5)/sizeof(int);
 
     printArray(array5, arrayLen);
-    mergeSort(array5, 0, arrayLen);
+    quickSort(array5, 0, arrayLen);
     printArray(array5, arrayLen);
 
 
