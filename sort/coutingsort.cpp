@@ -48,6 +48,10 @@ bool coutingSort(int array[], size_t arrLen) {
     {
         array[m] = tempArray[m];
     }
+
+    delete [] countingBuckets;
+    delete [] tempArray;
+
     
     return true;
 }
