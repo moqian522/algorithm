@@ -33,12 +33,6 @@ class BigTopHeap {
         }
 
     public:
-        BigTopHeap(int heapCapacity) {
-            array = new int[capacity + 1]();
-            capacity = heapCapacity;
-            count = 0;
-        }
-
         // array一定是从下标1开始放数据
         BigTopHeap(int *arr, int arrayCapacity) {
             array = arr;
@@ -65,24 +59,24 @@ class BigTopHeap {
             }
         }
 
-        bool removeTop(int &topValue) {
+        int removeTop() {
+            int topValue = 0;
             if (0 == count) {
-                return false;
+                return topValue;
             }
+
             topValue = array[1];
 
             array[1] = array[count];
             --count;
             heapifyFromTopPos(1);
-            return true;
+            return topValue;
         }
 
         int* sortHeap() {
             while(count > 0) {
-                int topValue = -1;
-                if (removeTop(topValue)) {
-                    array[count + 1] = topValue;
-                }
+                int topValue = removeTop();
+                array[count + 1] = topValue;
             }
 
             return array;
